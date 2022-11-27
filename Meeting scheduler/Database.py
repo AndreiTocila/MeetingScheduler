@@ -13,6 +13,13 @@ class Database:
 
         :return: connection
         """
-        return psycopg2.connect(database="PY_PROJECT",
-                                user="postgres",
-                                password="123456789",)
+        connection = None
+        try:
+            connection = psycopg2.connect(database="PY_PROJECT",
+                                          user="postgres",
+                                          password="123456789")
+        except psycopg2.OperationalError:
+            print("Connection failed to the database.")
+            exit(1)
+
+        return connection
