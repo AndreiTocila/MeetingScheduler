@@ -1,1 +1,1 @@
-# Python-Project
+# Meeting scheduler
