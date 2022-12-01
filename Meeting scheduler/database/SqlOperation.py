@@ -1,7 +1,7 @@
 import psycopg2
 
 from Database import Database
-from SqlQuery import SqlQuery
+from .SqlQuery import SqlQuery
 
 
 class SqlOperation:
