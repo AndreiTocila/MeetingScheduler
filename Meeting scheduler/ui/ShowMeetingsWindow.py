@@ -14,9 +14,9 @@ def do_show_meetings(start_date: str, end_date: str):
     :return: None
     """
     meetings = MeetingService.get_meetings(start_date, end_date)
-    if len(meetings) == 0:
+    if meetings is None:
         print("No meetings found.")
-    else:
+    elif meetings != "error":
         for key, value in meetings.items():
             start_date, end_date = key.split(" - ")
             print("--------------------")

@@ -15,4 +15,7 @@ class PersonService:
         except ValueError as e:
             print(str(e))
         else:
-            SqlOperation.insert_person(name, surname)
+            if SqlOperation.get_person(name, surname) is None:
+                SqlOperation.insert_person(name, surname)
+            else:
+                print("Person %s %s already exists." % (name, surname))

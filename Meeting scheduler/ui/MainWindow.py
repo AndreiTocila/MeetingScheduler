@@ -3,6 +3,7 @@ from PyQt5.QtGui import *
 from .InsertPersonWindow import InsertPersonWindow
 from .InsertMeetingWindow import InsertMeetingWindow
 from .ShowMeetingsWindow import ShowMeetingsWindow
+from .ExportImportWindow import ExportImportWindow
 
 
 class MainWindow(QMainWindow):
@@ -15,6 +16,7 @@ class MainWindow(QMainWindow):
         self.insert_person_window = None
         self.insert_meeting_window = None
         self.show_meetings_window = None
+        self.export_window = None
         self.init_window()
 
     def init_window(self):
@@ -37,7 +39,7 @@ class MainWindow(QMainWindow):
         insert_person_button = QPushButton("Insert new person", self)
         insert_meeting_button = QPushButton("Insert new meeting", self)
         show_meetings_button = QPushButton("Show meetings between interval", self)
-        export_button = QPushButton("Export", self)
+        export_button = QPushButton("Export/Import", self)
 
         insert_person_button.setGeometry(200, 100, 400, 100)
         insert_meeting_button.setGeometry(200, 250, 400, 100)
@@ -52,6 +54,7 @@ class MainWindow(QMainWindow):
         insert_person_button.clicked.connect(self.go_to_insert_person)
         insert_meeting_button.clicked.connect(self.go_to_insert_meeting)
         show_meetings_button.clicked.connect(self.go_to_show_meetings)
+        export_button.clicked.connect(self.go_to_export)
 
     def go_to_insert_person(self):
         """
@@ -78,4 +81,13 @@ class MainWindow(QMainWindow):
             :return: None
         """
         self.show_meetings_window = ShowMeetingsWindow()
+        self.hide()
+
+    def go_to_export(self):
+        """
+            This method is used to go to the export window.
+
+            :return: None
+        """
+        self.export_window = ExportImportWindow()
         self.hide()
