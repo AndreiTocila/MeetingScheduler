@@ -1,6 +1,16 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from database import SqlOperation
 import ui
+
+
+def do_insert(name: str, surname: str):
+    """
+        This method is used to insert a person into database.
+
+        :return: None
+    """
+    SqlOperation.insert_person(name, surname)
 
 
 class InsertPersonWindow(QMainWindow):
@@ -49,6 +59,7 @@ class InsertPersonWindow(QMainWindow):
         insert_person_button = QPushButton("Insert new person", self)
         insert_person_button.setGeometry(200, 400, 400, 100)
         insert_person_button.setFont(QFont('Times', 15))
+        insert_person_button.clicked.connect(lambda: do_insert(name_line.text(), surname_line.text()))
 
         back_button = QPushButton("Back", self)
         back_button.setGeometry(25, 725, 100, 50)

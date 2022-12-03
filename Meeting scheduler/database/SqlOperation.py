@@ -28,6 +28,7 @@ class SqlOperation:
             cursor = SqlOperation.connection.cursor()
             cursor.execute(SqlQuery.insert_person, (name, surname))
             SqlOperation.connection.commit()
+            print("Person %s %s inserted." % (name, surname))
         except ValueError as e:
             print(str(e))
         except psycopg2.Error:
@@ -68,6 +69,7 @@ class SqlOperation:
             SqlOperation.connection.commit()
             meeting_id = cursor.fetchone()[0]
             SqlOperation.insert_participants(meeting_id, id_list)
+            print("Meeting inserted.")
         except ValueError as e:
             print(str(e))
         except psycopg2.Error:
@@ -101,7 +103,7 @@ class SqlOperation:
         :param start_date: start date of the interval
         :param end_date: end date of the interval
 
-        :return: None
+        :return: meetings
         """
         cursor = SqlOperation.connection.cursor()
         meetings_info = dict()
@@ -116,10 +118,7 @@ class SqlOperation:
                 else:
                     meetings_info[key].append(name+" "+surname)
             else:
-                if len(meetings_info) == 0:
-                    print("No meetings found.")
-                else:
-                    print(meetings_info)
+                return meetings_info
         except psycopg2.Error:
             print("Error while selecting meetings.")
             SqlOperation.connection.rollback()

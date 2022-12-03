@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from .InsertPersonWindow import InsertPersonWindow
 from .InsertMeetingWindow import InsertMeetingWindow
+from .ShowMeetingsWindow import ShowMeetingsWindow
 
 
 class MainWindow(QMainWindow):
@@ -13,6 +14,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.insert_person_window = None
         self.insert_meeting_window = None
+        self.show_meetings_window = None
         self.init_window()
 
     def init_window(self):
@@ -47,10 +49,11 @@ class MainWindow(QMainWindow):
         show_meetings_button.setFont(QFont('Times', 15))
         export_button.setFont(QFont('Times', 15))
 
-        insert_person_button.clicked.connect(self.goto_to_insert_person)
-        insert_meeting_button.clicked.connect(self.goto_to_insert_meeting)
+        insert_person_button.clicked.connect(self.go_to_insert_person)
+        insert_meeting_button.clicked.connect(self.go_to_insert_meeting)
+        show_meetings_button.clicked.connect(self.go_to_show_meetings)
 
-    def goto_to_insert_person(self):
+    def go_to_insert_person(self):
         """
             This method is used to go to the insert person window.
 
@@ -59,11 +62,20 @@ class MainWindow(QMainWindow):
         self.insert_person_window = InsertPersonWindow()
         self.hide()
 
-    def goto_to_insert_meeting(self):
+    def go_to_insert_meeting(self):
         """
             This method is used to go to the insert meeting window.
 
             :return: None
         """
         self.insert_meeting_window = InsertMeetingWindow()
+        self.hide()
+
+    def go_to_show_meetings(self):
+        """
+            This method is used to go to the show meetings window.
+
+            :return: None
+        """
+        self.show_meetings_window = ShowMeetingsWindow()
         self.hide()

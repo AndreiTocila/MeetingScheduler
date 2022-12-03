@@ -12,15 +12,11 @@
 # SqlOperation.select_interval_meetings('2020-01-01 00:00', '2020-01-07 00:00')
 
 
-# from ui import MainWindow
-# from PyQt5.QtWidgets import QApplication
-# import sys
-#
-# app = QApplication(sys.argv)
-# win = MainWindow()
-# sys.exit(app.exec_())
+from ui import MainWindow
+from PyQt5.QtWidgets import QApplication
+import sys
 
-from database import SqlOperation
-
-SqlOperation.insert_meeting('2020-01-01 08:00', '2020-01-01 08:30', [('Popescuu', 'Ion'), ('Anaa', 'Maria')])
+app = QApplication(sys.argv)
+win = MainWindow()
+sys.exit(app.exec_())
 

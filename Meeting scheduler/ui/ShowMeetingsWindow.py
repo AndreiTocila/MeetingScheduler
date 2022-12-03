@@ -1,35 +1,38 @@
-import re
-
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 import ui
 from database import SqlOperation
 
 
-def do_insert(start_date: str, end_date: str, participants: str):
+def do_show_meetings(start_date: str, end_date: str):
     """
-    This method is used to insert a meeting into the database.
+    This method is used to show the meetings between two dates.
 
-    :param start_date: start date of the meeting
-    :param end_date: end date of the meeting
-    :param participants: list of participants
+    :param start_date: start date
+    :param end_date: end date
 
     :return: None
     """
-    participants_list = []
-    for person in re.split(r',\s*', participants):
-        name, surname = person.split(" ")
-        participants_list.append((name, surname))
-    SqlOperation.insert_meeting(start_date, end_date, participants_list)
+    meetings = SqlOperation.select_interval_meetings(start_date, end_date)
+    if len(meetings) == 0:
+        print("No meetings found.")
+    else:
+        for key, value in meetings.items():
+            start_date, end_date = key.split(" - ")
+            print("--------------------")
+            print("Start date: %s" % start_date)
+            print("End date: %s" % end_date)
+            print("Participants: %s" % ", ".join(value))
+            print("--------------------")
 
 
-class InsertMeetingWindow(QMainWindow):
+class ShowMeetingsWindow(QMainWindow):
     """
-        This method is used to create the insert meeting window.
+        This method is used to show the meetings.
     """
 
     def __init__(self):
-        super(InsertMeetingWindow, self).__init__()
+        super(ShowMeetingsWindow, self).__init__()
         self.main_window = None
         self.init_window()
 
@@ -66,21 +69,12 @@ class InsertMeetingWindow(QMainWindow):
         end_date_input.setGeometry(450, 200, 300, 100)
         end_date_input.setFont(QFont('Times', 12))
 
-        participants_label = QLabel("Participants", self)
-        participants_label.setGeometry(335, 320, 130, 100)
-        participants_label.setFont(QFont('Times', 15))
-
-        participants_input = QLineEdit(self)
-        participants_input.setGeometry(25, 390, 750, 50)
-        participants_input.setFont(QFont('Times', 12))
-
-        insert_meeting_button = QPushButton("Insert new meeting", self)
-        insert_meeting_button.setGeometry(200, 500, 400, 100)
-        insert_meeting_button.setFont(QFont('Times', 15))
-        insert_meeting_button.clicked.connect(
-            lambda: do_insert(start_date_input.dateTime().toString("yyyy-MM-dd hh:mm"),
-                              end_date_input.dateTime().toString("yyyy-MM-dd hh:mm"),
-                              participants_input.text()))
+        show_meetings_button = QPushButton("Show meetings", self)
+        show_meetings_button.setGeometry(200, 390, 400, 100)
+        show_meetings_button.setFont(QFont('Times', 15))
+        show_meetings_button.clicked.connect(
+            lambda: do_show_meetings(start_date_input.dateTime().toString("yyyy-MM-dd hh:mm"),
+                                     end_date_input.dateTime().toString("yyyy-MM-dd hh:mm")))
 
         back_button = QPushButton("Back", self)
         back_button.setGeometry(25, 725, 100, 50)
