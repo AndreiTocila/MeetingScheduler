@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 import ui
-from database import SqlOperation
+from service import MeetingService
 
 
 def do_show_meetings(start_date: str, end_date: str):
@@ -13,7 +13,7 @@ def do_show_meetings(start_date: str, end_date: str):
 
     :return: None
     """
-    meetings = SqlOperation.select_interval_meetings(start_date, end_date)
+    meetings = MeetingService.get_meetings(start_date, end_date)
     if len(meetings) == 0:
         print("No meetings found.")
     else:

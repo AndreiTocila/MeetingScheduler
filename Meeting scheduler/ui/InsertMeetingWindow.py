@@ -3,7 +3,7 @@ import re
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 import ui
-from database import SqlOperation
+from service import MeetingService
 
 
 def do_insert(start_date: str, end_date: str, participants: str):
@@ -20,7 +20,7 @@ def do_insert(start_date: str, end_date: str, participants: str):
     for person in re.split(r',\s*', participants):
         name, surname = person.split(" ")
         participants_list.append((name, surname))
-    SqlOperation.insert_meeting(start_date, end_date, participants_list)
+    MeetingService.insert_meeting(start_date, end_date, participants_list)
 
 
 class InsertMeetingWindow(QMainWindow):

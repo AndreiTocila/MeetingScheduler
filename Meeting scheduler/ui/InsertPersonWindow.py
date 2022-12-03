@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from database import SqlOperation
+from service import PersonService
 import ui
 
 
@@ -10,7 +10,7 @@ def do_insert(name: str, surname: str):
 
         :return: None
     """
-    SqlOperation.insert_person(name, surname)
+    PersonService.insert_person(name, surname)
 
 
 class InsertPersonWindow(QMainWindow):
