@@ -49,7 +49,7 @@ class ShowMeetingsWindow(QMainWindow):
 
     def init_ui(self):
         """
-            This method is used to initialize the user interface.
+            This method is used to initialize the user interface and to connect the buttons to the methods.
 
             :return: None
         """
