@@ -85,7 +85,7 @@ class MainWindow(QMainWindow):
 
     def go_to_export(self):
         """
-            This method is used to go to the export window.
+            This method is used to go to the export/import window.
 
             :return: None
         """

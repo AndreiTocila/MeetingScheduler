@@ -6,7 +6,7 @@ import ui
 
 def do_insert(name: str, surname: str):
     """
-        This method is used to insert a person into database.
+        This method is used to call the service layer to insert a person into the database.
 
         :return: None
     """

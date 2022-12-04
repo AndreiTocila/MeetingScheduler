@@ -24,6 +24,10 @@ def create_meetings_info(meetings):
 
 
 class MeetingService:
+    """
+        This class contains all the methods used to manage the meetings.
+    """
+
     validator = Validator()
 
     @staticmethod

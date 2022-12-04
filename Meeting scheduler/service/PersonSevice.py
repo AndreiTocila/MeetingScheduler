@@ -3,6 +3,9 @@ from database import SqlOperation
 
 
 class PersonService:
+    """
+        This class contains all the methods used to manage the persons.
+    """
     validator = Validator()
 
     @staticmethod

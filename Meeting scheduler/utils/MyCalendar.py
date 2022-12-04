@@ -6,6 +6,9 @@ from service import MeetingService, PersonService
 
 
 class MyCalendar:
+    """
+        This class contains all the methods used to manage the calendar.
+    """
 
     @staticmethod
     def export_calendar():

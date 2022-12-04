@@ -11,7 +11,7 @@ class Database:
         """
         This method is used to get a connection to the database
 
-        :return: connection
+        :return: connection: psycopg2.connection
         """
         connection = None
         try:

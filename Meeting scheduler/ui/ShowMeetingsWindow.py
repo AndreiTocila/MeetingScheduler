@@ -28,7 +28,7 @@ def do_show_meetings(start_date: str, end_date: str):
 
 class ShowMeetingsWindow(QMainWindow):
     """
-        This method is used to show the meetings.
+        This class is used to create the show meetings window.
     """
 
     def __init__(self):

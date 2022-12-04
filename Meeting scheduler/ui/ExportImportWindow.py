@@ -6,7 +6,7 @@ import ui
 
 class ExportImportWindow(QMainWindow):
     """
-      This class is used to create the main window.
+      This class is used to create the export/import window.
     """
 
     def __init__(self):
@@ -56,6 +56,11 @@ class ExportImportWindow(QMainWindow):
         self.hide()
 
     def import_calendar(self):
+        """
+            This method is used to import a calendar.
+
+            :return: None
+        """
         fname = QFileDialog.getOpenFileName(self, "Open file", "calendars", "ICalendar (*.ics)")
         if fname[0]:
             MyCalendar.import_calendar(fname[0])

@@ -2,6 +2,9 @@ from datetime import datetime
 
 
 class Validator:
+    """
+        This class contains all the methods used to validate the input.
+    """
 
     @staticmethod
     def validate_name(name: str, surname: str):

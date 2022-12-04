@@ -8,7 +8,7 @@ from service import MeetingService
 
 def do_insert(start_date: str, end_date: str, participants: str):
     """
-    This method is used to insert a meeting into the database.
+    This method is used to call service layer to insert a meeting into the database.
 
     :param start_date: start date of the meeting
     :param end_date: end date of the meeting
