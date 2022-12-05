@@ -12,6 +12,11 @@ class PersonService:
     def insert_person(name: str, surname: str):
         """
             This method is used to validate the input and call database layer to insert a person into the database.
+
+            :param name: name of the person
+            :param surname: surname of the person
+
+            :return: None
         """
         try:
             PersonService.validator.validate_name(name, surname)
